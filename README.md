@@ -28,7 +28,7 @@ in the command line.
 Using
 -----
 
-Look at the code in [`test.c`]() for an example of how to use the code. 
+Look at the code in [`test.c`](test.c) for an example of how to use the code. 
 
 A few details you have to keep in mind while using it:
 

@@ -28,14 +28,14 @@ in the command line.
 Using
 -----
 
-Look at the code in `test.c` for an example of how to use the code. 
+Look at the code in [`test.c`]() for an example of how to use the code. 
 
 A few details you have to keep in mind while using it:
 
-* Always, **always** check is a list is full before addind a new item. The 
+* Always, **always**, check if a list is full before addind a new item. The 
 code will fail an assertion (and die rather noisily) if you fail to do so.
 
-* Always, and I mean **always** check if the list has data before accessing it.
+* Always, and I mean **always**, check if the list has data before accessing it.
 
 * The default index type is `size_t`, which on a typical embedded CPU will take
 4 bytes. If your lists are small, you can change it to `uint_8` or `uit16_t` to
@@ -43,7 +43,7 @@ save space. To do so, just `#define` the desired type befor including the
 library, like this:
 
 ```C
-#define ALIST_INDEX_T uitn8_t
+#define ALIST_INDEX_T uint8_t
 #include "alist.h"
 
 // ... your code here ...

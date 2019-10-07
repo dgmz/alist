@@ -8,13 +8,6 @@ void print_list(const struct alist *l)
 	printf("size:%d head:%x count:%d\n", l->size, l->head, l->count);	
 }
 
-bool list_equal(const struct alist *a, const struct alist *b)
-{
-	return a->size == b->size 
-		&& a->head == b->head
-		&& a->count == b->count;
-}
-
 void run_tests(void)
 {
 	struct alist list;

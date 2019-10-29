@@ -41,6 +41,7 @@
 
 void alist_init(struct alist *l, ALIST_INDEX_T items)
 {
+	assert(l);
 	l->size = items;
 	l->head = 0;
 	l->count = 0;
@@ -48,26 +49,30 @@ void alist_init(struct alist *l, ALIST_INDEX_T items)
 
 ALIST_INDEX_T alist_add(struct alist *l)
 {
+	assert(l);
 	assert(l->count < l->size);
 	ALIST_INDEX_T pos = WRAP(l, l->head + l->count);
 	l->count++;
 	return pos;
 }
 
-ALIST_INDEX_T alist_first(struct alist *l)
+ALIST_INDEX_T alist_next(struct alist *l, ALIST_INDEX_T i)
 {
-	assert(l->count);
-	return l->head;
+	assert(l);
+	assert(i - l->head < l->count);
+	return WRAP(l, i + 1);
 }
 
-ALIST_INDEX_T alist_last(struct alist *l)
+ALIST_INDEX_T alist_at(struct alist *l, size_t pos)
 {
-	assert(l->count);
-	return WRAP(l, l->head + l->count - 1);
+	assert(l);
+	assert(pos < l->count);
+	return WRAP(l, l->head + pos);
 }
 
 ALIST_INDEX_T alist_rm_first(struct alist *l)
 {
+	assert(l);
 	assert(l->count <= l->size);	
 	assert(0 < l->count);
 	ALIST_INDEX_T first = l->head;
@@ -78,6 +83,7 @@ ALIST_INDEX_T alist_rm_first(struct alist *l)
 
 ALIST_INDEX_T alist_rm_last(struct alist *l)
 {
+	assert(l);
 	assert(l->count <= l->size);	
 	assert(0 < l->count);
 	ALIST_INDEX_T last = WRAP(l, l->head + l->count - 1);

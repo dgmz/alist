@@ -47,11 +47,13 @@ struct alist {
 #define alist_is_empty(l) (0 == (l)->count)
 #define alist_is_full(l) ((l)->count == (l)->size)
 #define alist_count(l) ((l)->count)
+#define alist_first(l) alist_at(l,0)
+#define alist_last(l) alist_at(l,(l)->count-1)
 
 void alist_init(struct alist *l, ALIST_INDEX_T count);
 ALIST_INDEX_T alist_add(struct alist *l);
-ALIST_INDEX_T alist_first(struct alist *l);
-ALIST_INDEX_T alist_last(struct alist *l);
+ALIST_INDEX_T alist_at(struct alist *l, size_t pos);
+ALIST_INDEX_T alist_next(struct alist *l, ALIST_INDEX_T i);
 ALIST_INDEX_T alist_rm_first(struct alist *l);
 ALIST_INDEX_T alist_rm_last(struct alist *l);
 

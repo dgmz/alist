@@ -65,7 +65,11 @@ void run_tests(void)
 	printf("first:");
 	assert(first == alist_first(&list));
 	printf("OK\n");
+	printf("next:");
+	assert(second == alist_next(&list, first));
+	printf("OK\n");
 	printf("last:");
+	assert(first != alist_last(&list));
 	assert(second == alist_last(&list));
 	printf("OK\n");
 
@@ -87,7 +91,13 @@ void run_tests(void)
 	printf("first:");
 	assert(first == alist_first(&list));
 	printf("OK\n");
+	printf("next:");
+	assert(second == alist_next(&list, first));
+	assert(third == alist_next(&list, second));
+	printf("OK\n");
 	printf("last:");
+	assert(first != alist_last(&list));
+	assert(second != alist_last(&list));
 	assert(third == alist_last(&list));
 	printf("OK\n");
 
@@ -213,15 +223,11 @@ int main(void)
 	/* Example usage: */
 
 	alist_init(&list, sizeof(list_data) / sizeof(char));
-
-	/* **Always** check if the list is full before adding. */
 	for (char c = '0'; !alist_is_full(&list); c++) {
-		list_data[alist_push(&list)] = c;
+		list_data[alist_add(&list)] = c;
 	}
-
-	/* **Always** check if the list is empty before accessing. */
-	while (!alist_is_empty(&list)) {
-		putchar(list_data[alist_pop(&list)]);
+	for (size_t i = 0; i < alist_count(&list); i++) {
+		putchar(list_data[alist_at(&list, i)]);
 	}
 	putchar('\n');
 
